@@ -1,2 +1,0 @@
-Esto es un error simulado en la app - version mala para practicar revert
-linea mala: password = 123
