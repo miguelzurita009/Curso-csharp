@@ -90,3 +90,27 @@ git log --oneline -5      # QUÉ ES: busca hash malo, ej  abc1234 / POR QUÉ: de
 git revert abc1234 --no-edit # QUÉ ES: crea nueva versión que deshace la mala / POR QUÉ: --no-edit = no abrir editor, usa mensaje automático
 git push                  # QUÉ ES: sube el deshacer / POR QUÉ: GitHub queda bueno otra vez
 ```
+
+## Molde 5: Ver, traer y clonar - cerrar Git base (copiar tal cual)
+POR QUÉ este molde: con esto ya no vuelves a Git en meses. Push sube, pull baja, diff revisa, clone recupera.
+
+1. `diff` — QUÉ ES: muestra línea por línea qué cambiaste antes de guardar / POR QUÉ: status solo dice el nombre, diff te evita subir un error.
+```
+git status                # QUÉ ES: qué archivos cambiaron / POR QUÉ: primero el nombre. Esperas: modified:
+git diff                  # QUÉ ES: qué líneas cambiaron en rojo/verde / POR QUÉ: revisas antes del carrito. Rojo = borrado, verde = agregado
+git diff --staged         # QUÉ ES: qué hay en el carrito / POR QUÉ: lo usas después de add para verificar antes del commit
+```
+
+2. `pull` — QUÉ ES: trae lo de GitHub a tu PC, gemelo de push / POR QUÉ: si no bajas, trabajas con código viejo.
+```
+git pull                  # QUÉ ES: baja y mezcla lo de origin/main / POR QUÉ: ya quedó vinculado con -u, no necesitas escribir origin main. Esperas: Already up to date o Fast-forward
+git status                # QUÉ ES: verificación / POR QUÉ: esperas: up to date + clean
+# Regla junior: siempre pull antes de empezar el día y antes de push si trabajas en 2 PCs.
+```
+
+3. `clone` — QUÉ ES: copia un repo de GitHub a carpeta nueva / POR QUÉ: recupera tu proyecto en otra PC o baja un repo de empresa.
+```
+# No se corre dentro de C:\Curso-csharp, se corre en la carpeta padre o Temp:
+git clone https://github.com/miguelzurita009/Curso-csharp.git # QUÉ ES: descarga todo con historia / POR QUÉ: crea carpeta Curso-csharp nueva con .git incluido
+# Después: cd Curso-csharp + git log --oneline -5 para confirmar que trajo todo
+```

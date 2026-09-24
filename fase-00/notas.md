@@ -71,6 +71,18 @@ git status # Esperas: up to date + clean
 # NUNCA push --force — POR QUÉ: rompe historia y portafolio
 ```
 
+### Molde 5 - Ver, traer y clonar (cerrar Git base)
+```
+# diff = ver líneas antes de guardar / POR QUÉ: status dice nombre, diff evita subir error
+# git status # Esperas: modified:
+# git diff # QUÉ ES: rojo borrado verde agregado / POR QUÉ: revisas antes del carrito
+# git diff --staged # QUÉ ES: qué hay en carrito / POR QUÉ: verificas después de add
+# pull = traer de GitHub, gemelo de push / POR QUÉ: sin bajar trabajas con código viejo
+# git pull # QUÉ ES: baja origin/main / POR QUÉ: ya vinculado, esperas Already up to date
+# clone = copiar repo a carpeta nueva / POR QUÉ: recupera en otra PC
+# git clone https://github.com/miguelzurita009/Curso-csharp.git # crea carpeta con .git incluido
+```
+
 Tipos de commit: `init, nota, ejercicio, proyecto, fix` — QUÉ ES: prefijo del mensaje / POR QUÉ: ordena tu historial
 
 ## Qué aprendí (1 frase)
