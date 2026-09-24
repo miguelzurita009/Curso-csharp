@@ -52,13 +52,29 @@ SELECT * FROM Productos WHERE nombre LIKE '%a%';
 -- 5. Ordenar — QUÉ ES: ORDER BY ordena / POR QUÉ: listas ordenadas. DESC = mayor a menor
 SELECT nombre, precio FROM Productos ORDER BY precio DESC;
 
--- 6. Contar y agrupar — QUÉ ES: COUNT cuenta, GROUP BY agrupa / POR QUÉ: reportes ej cuántos por categoría
+-- 6. Contar y agrupar — QUÉ ES: COUNT cuenta filas, GROUP BY las junta por valor igual / POR QUÉ: reportes ej cuántos por categoría
 SELECT categoriaId, COUNT(*) AS total FROM Productos GROUP BY categoriaId;
+-- PASOS PARA ARMARLO TÚ (repite este orden):
+-- Paso 1: ¿Por qué columna agrupo? Ej categoriaId — QUÉ ES: la columna que se repite / POR QUÉ: quieres un total por cada valor
+-- Paso 2: SELECT categoriaId, COUNT(*) AS total — QUÉ ES: pides grupo + conteo, AS total = apodo / POR QUÉ: sin COUNT solo verías ids repetidos
+-- Paso 3: FROM Productos — QUÉ ES: de dónde / POR QUÉ: siempre tabla base
+-- Paso 4: GROUP BY categoriaId — QUÉ ES: junta iguales / POR QUÉ: debe ser LA MISMA columna del SELECT, si no da error
+-- Resultado con tus datos: 1|3 (Electronica tiene 3), 2|1 (Hogar tiene 1) — POR QUÉ: Laptop,Mouse,Teclado son 1, Silla es 2
+-- Similar tú: cuenta por precio? No, precio no se repite. Agrupa solo por columnas que se repiten: categoriaId.
+-- Otro similar: SELECT categoriaId, AVG(precio) AS promedio FROM Productos GROUP BY categoriaId; — QUÉ ES: AVG promedia / POR QUÉ: mismo molde, cambia COUNT por AVG
 
--- 7. Unir 2 tablas JOIN — QUÉ ES: une por id igual / POR QUÉ: lo más pedido en empleo, traer producto + nombre categoría
+-- 7. Unir 2 tablas JOIN — QUÉ ES: pega filas donde FK = PK / POR QUÉ: lo más pedido en empleo, traer producto + nombre categoría sin duplicar datos
 SELECT Productos.nombre, Productos.precio, Categorias.nombre AS categoria
 FROM Productos
 JOIN Categorias ON Productos.categoriaId = Categorias.id;
+-- PASOS PARA ARMARLO TÚ (repite este orden):
+-- Paso 1: ¿Qué quiero ver? Ej nombre producto + nombre categoría — QUÉ ES: elige columnas / POR QUÉ: si no eliges traes todo y choca nombre con nombre
+-- Paso 2: FROM Productos — QUÉ ES: tabla base, la que tiene el FK categoriaId / POR QUÉ: empiezas por la que apunta
+-- Paso 3: Busca el FK: categoriaId en Productos apunta a id en Categorias — QUÉ ES: FK termina en Id / POR QUÉ: así sabes el ON sin adivinar
+-- Paso 4: JOIN Categorias ON Productos.categoriaId = Categorias.id — QUÉ ES: pega donde coinciden / POR QUÉ: ON dice cómo pegar, izquierda FK = derecha PK
+-- Paso 5: SELECT con prefijo Tabla.columna + AS para duplicados: Categorias.nombre AS categoria — QUÉ ES: prefijo evita ambigüedad, AS renombra / POR QUÉ: ambas se llaman nombre, sin AS no sabes cuál es cuál
+-- Resultado: Laptop|1200|Electronica, Mouse|25|Electronica, Silla|150|Hogar, Teclado|60|Electronica
+-- Similar tú: trae solo Hogar agregando al final: WHERE Categorias.id = 2; — mismo molde + filtro
 
 -- 8. Crear — QUÉ ES: INSERT agrega fila / POR QUÉ: tu POST hará esto
 INSERT INTO Productos (id, nombre, precio, categoriaId) VALUES (5, 'Monitor', 300, 1);
