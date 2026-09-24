@@ -2,8 +2,24 @@
 
 ## Idea en 1 frase
 - `HTTP` — QUÉ ES: idioma con el que tu app pide datos / POR QUÉ: toda API .NET habla HTTP.
-- `REST` — QUÉ ES: regla ordenada para usar HTTP con URLs claras / POR QUÉ: así no inventas URLs locas, todos usan el mismo molde.
+- `REST` — QUÉ ES: molde para no inventar URLs locas, recurso en plural + método dice la acción / POR QUÉ: todos usan lo mismo, te contratan por seguirlo.
 - `JSON` — QUÉ ES: texto ordenado con llaves y comillas para mandar datos / POR QUÉ: C# y navegador se entienden con JSON.
+
+## REST malo vs bueno (lo que preguntaste)
+MALO - cada quien inventa, nadie te contrata así:
+```
+GET /traemeLosProductosPorfa.php  # QUÉ ES: verbo en URL / POR QUÉ MALO: solo tú entiendes
+GET /crearProducto?accion=crear   # QUÉ ES: acción en URL / POR QUÉ MALO: rompe el molde
+```
+BUENO - recurso sustantivo plural, acción en método:
+```
+GET /api/productos     # QUÉ ES: leer todos / POR QUÉ BUENO: predecible
+GET /api/productos/1   # QUÉ ES: leer uno / POR QUÉ BUENO: mismo recurso + id
+POST /api/productos    # QUÉ ES: crear uno / POR QUÉ BUENO: URL igual, cambia método
+PUT /api/productos/1   # QUÉ ES: actualizar uno / POR QUÉ BUENO: reemplazas todo
+DELETE /api/productos/1 # QUÉ ES: borrar uno / POR QUÉ BUENO: misma URL, distinta acción
+# Reglas: minúscula plural, sin verbo en URL, cada pedido lleva todo (sin estado) para escalar en Azure.
+# Tu práctica fue REST: GET .../posts/1 con recurso posts en plural.
 
 ## Molde que repetirás en Fase 2 (copiar tal cual)
 ```
