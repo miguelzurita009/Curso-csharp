@@ -36,6 +36,14 @@ git commit -m "tipo: descripción" # QUÉ ES: guardar local / POR QUÉ: aún no 
 git log --oneline -5 # QUÉ ES: historial / POR QUÉ: confirmar que se guardó
 ```
 
+### Molde 2 - Enlazar y primer push (una vez por proyecto) — FALTABA, ya agregado
+```
+git remote -v # QUÉ ES: muestra enlace / POR QUÉ: vacío = sin enlace, con origin = enlazado
+git remote add origin https://github.com/miguelzurita009/Curso-csharp.git # QUÉ ES: guarda URL con nombre origin / POR QUÉ: solo una vez
+git push -u origin main # QUÉ ES: sube main y vincula / POR QUÉ: -u solo primera vez
+# remoto = copia en GitHub / origin = nombre corto / push = subir
+```
+
 ### Molde 3 - Segundo commit en adelante (ciclo diario)
 ```
 git status # Esperas: modified: algún archivo
@@ -46,23 +54,20 @@ git push # QUÉ ES: subir a GitHub / POR QUÉ: sin -u, ya está vinculado
 git status # Esperas: up to date + clean
 ```
 
-### Molde 2 - Enlazar y primer push (una vez por proyecto) — FALTABA, ya agregado
-```
-git remote -v # QUÉ ES: muestra enlace / POR QUÉ: vacío = sin enlace, con origin = enlazado
-git remote add origin https://github.com/miguelzurita009/Curso-csharp.git # QUÉ ES: guarda URL con nombre origin / POR QUÉ: solo una vez
-git push -u origin main # QUÉ ES: sube main y vincula / POR QUÉ: -u solo primera vez
-# remoto = copia en GitHub / origin = nombre corto / push = subir
-```
-
 ### Molde 4 - Revertir cuando algo salió mal
 ```
 # Caso 1 - cambié archivo pero NO hice commit:
+# git status # ves modified: archivo
 # git restore fase-00/prueba-revert.txt # QUÉ ES: descarta cambio / POR QUÉ: vuelve a última versión
+
 # Caso 2 - commit local sin push:
+# git log --oneline -5 # QUÉ ES: ver hashes / POR QUÉ: necesitas el código de la versión buena
 # git reset --soft HEAD~1 # QUÉ ES: deshace commit guardando cambios / POR QUÉ: HEAD~1 = una atrás, no pierdes nada
-# Caso 3 - ya hice push (lo seguro):
-# git revert HASH --no-edit # QUÉ ES: crea nueva versión que deshace la mala / POR QUÉ: no borra historia
-# git push # QUÉ ES: sube el deshacer / POR QUÉ: GitHub queda bueno
+
+# Caso 3 - ya hice push (lo seguro, igual que chat y README):
+# git log --oneline -5 # QUÉ ES: busca hash malo, ej 68ae698 / POR QUÉ: debes decirle cuál deshacer
+# git revert 68ae698 --no-edit # QUÉ ES: crea nueva versión que deshace la mala / POR QUÉ: --no-edit = no abrir editor, no borra historia
+# git push # QUÉ ES: sube el deshacer / POR QUÉ: GitHub queda bueno otra vez
 # NUNCA push --force — POR QUÉ: rompe historia y portafolio
 ```
 
