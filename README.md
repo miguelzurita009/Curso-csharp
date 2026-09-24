@@ -53,3 +53,15 @@ git push -u origin main # QUÉ ES: sube tu rama main a GitHub y la deja vinculad
 git push                # QUÉ ES: sube cambios siguientes / POR QUÉ: ya quedó vinculado con -u
 git status              # QUÉ ES: debe decir clean y up to date / POR QUÉ: confirmas que local y GitHub están iguales
 ```
+
+## Molde 3: Segundo commit en adelante - ciclo diario completo (copiar tal cual)
+POR QUÉ este molde: el primero fue especial con `-u`, todos los demás son así. Requisito: debes haber cambiado al menos 1 archivo, si no sale `nothing to commit`.
+```
+git status                         # QUÉ ES: ve qué cambió / POR QUÉ: debes ver antes de guardar. Esperas: modified: algún archivo
+git add .                          # QUÉ ES: mete al carrito / POR QUÉ: Git solo guarda lo del carrito
+git status                         # QUÉ ES: verifica carrito / POR QUÉ: esperas: Changes to be committed
+git commit -m "nota: descripción"  # QUÉ ES: guarda versión local / POR QUÉ: aún NO está en GitHub, solo PC. Esperas: [main xxxxxxx]
+git log --oneline -5               # QUÉ ES: historial / POR QUÉ: tu nueva versión debe salir arriba
+git push                           # QUÉ ES: sube a GitHub / POR QUÉ: sin -u porque ya vinculaste. Esperas: main -> main
+git status                         # QUÉ ES: verificación final / POR QUÉ: esperas: up to date with origin/main + clean
+```
