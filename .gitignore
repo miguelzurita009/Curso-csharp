@@ -1,14 +1,15 @@
 # Molde .gitignore - copiar tal cual en cada proyecto .NET futuro
-[Bb]in/
-[Oo]bj/
-[Vv]s/
-.vscode/
-*.user
-*.suo
-[TestRr]esult*/
-[Bb]uild/
-[Dd]ebug/
-[Rr]elease/
-appsettings.Development.json
-*.db
-*.sqlite
+# QUÉ ES: lista de lo que Git debe ignorar / POR QUÉ: no guardar basura generada
+[Bb]in/ # QUÉ ES: carpeta de compilados / POR QUÉ: se regenera sola al compilar
+[Oo]bj/ # QUÉ ES: archivos temporales de compilación / POR QUÉ: pesan y no sirven en GitHub
+[Vv]s/ # QUÉ ES: configuración local de Visual Studio / POR QUÉ: solo vale en tu PC
+.vscode/ # QUÉ ES: configuración local de VS Code / POR QUÉ: cada uno tiene la suya
+*.user # QUÉ ES: preferencias personales / POR QUÉ: no aportan al proyecto
+*.suo # QUÉ ES: opciones de usuario de Visual Studio / POR QUÉ: solo local
+[TestRr]esult*/ # QUÉ ES: resultados de tests / POR QUÉ: se regeneran al correr tests
+[Bb]uild/ # QUÉ ES: salidas de build / POR QUÉ: generados, no código fuente
+[Dd]ebug/ # QUÉ ES: compilación en modo debug / POR QUÉ: temporal
+[Rr]elease/ # QUÉ ES: compilación en modo release / POR QUÉ: temporal
+appsettings.Development.json # QUÉ ES: contraseñas y cadenas locales / POR QUÉ: no subir secretos a GitHub
+*.db # QUÉ ES: bases de datos locales / POR QUÉ: son datos tuyos, no código
+*.sqlite # QUÉ ES: bases SQLite locales / POR QUÉ: igual que arriba
