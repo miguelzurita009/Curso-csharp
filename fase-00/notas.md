@@ -1,7 +1,7 @@
 # Fase 00 - Notas (molde)
 
 ## Qué hice hoy
-- (fecha + 1 línea)
+- 2026-09-24 - aprendí segundo commit y push a GitHub
 
 ## Comandos que repetí
 
