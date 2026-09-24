@@ -65,3 +65,28 @@ git log --oneline -5               # QUÉ ES: historial / POR QUÉ: tu nueva ver
 git push                           # QUÉ ES: sube a GitHub / POR QUÉ: sin -u porque ya vinculaste. Esperas: main -> main
 git status                         # QUÉ ES: verificación final / POR QUÉ: esperas: up to date with origin/main + clean
 ```
+
+## Molde 4: Revertir cuando algo salió mal (copiar según tu caso)
+- `restore` — QUÉ ES: descarta cambios no guardados / POR QUÉ: vuelve al último commit.
+- `reset --soft` — QUÉ ES: deshace commit local manteniendo cambios / POR QUÉ: no pierdes nada, seguro local.
+- `revert` — QUÉ ES: crea NUEVA versión que deshace una mala / POR QUÉ: es lo único seguro cuando ya hiciste push, no borra historia.
+- NUNCA uses `push --force` en este curso — POR QUÉ: reescribe historia y rompe GitHub y portafolio.
+
+Caso 1 - Cambié archivo pero aún NO hice commit:
+```
+git status                # QUÉ ES: ver qué cambió / POR QUÉ: confirmas cuál archivo está mal. Esperas: modified:
+git restore fase-00/prueba-revert.txt # QUÉ ES: devuelve archivo a última versión / POR QUÉ: descarta tu error no guardado
+```
+
+Caso 2 - Ya hice commit local pero aún NO hice push:
+```
+git log --oneline -5      # QUÉ ES: ver hashes / POR QUÉ: identificas cuál es el malo
+git reset --soft HEAD~1   # QUÉ ES: deshace último commit dejando cambios en carrito / POR QUÉ: HEAD~1 = una versión atrás, soft = no pierdes archivos
+```
+
+Caso 3 - Ya hice push a GitHub (tu pregunta):
+```
+git log --oneline -5      # QUÉ ES: busca hash malo, ej  abc1234 / POR QUÉ: debes decirle cuál deshacer
+git revert abc1234 --no-edit # QUÉ ES: crea nueva versión que deshace la mala / POR QUÉ: --no-edit = no abrir editor, usa mensaje automático
+git push                  # QUÉ ES: sube el deshacer / POR QUÉ: GitHub queda bueno otra vez
+```

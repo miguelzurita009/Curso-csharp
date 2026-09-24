@@ -54,6 +54,18 @@ git push -u origin main # QUÉ ES: sube main y vincula / POR QUÉ: -u solo prime
 # remoto = copia en GitHub / origin = nombre corto / push = subir
 ```
 
+### Molde 4 - Revertir cuando algo salió mal
+```
+# Caso 1 - cambié archivo pero NO hice commit:
+# git restore fase-00/prueba-revert.txt # QUÉ ES: descarta cambio / POR QUÉ: vuelve a última versión
+# Caso 2 - commit local sin push:
+# git reset --soft HEAD~1 # QUÉ ES: deshace commit guardando cambios / POR QUÉ: HEAD~1 = una atrás, no pierdes nada
+# Caso 3 - ya hice push (lo seguro):
+# git revert HASH --no-edit # QUÉ ES: crea nueva versión que deshace la mala / POR QUÉ: no borra historia
+# git push # QUÉ ES: sube el deshacer / POR QUÉ: GitHub queda bueno
+# NUNCA push --force — POR QUÉ: rompe historia y portafolio
+```
+
 Tipos de commit: `init, nota, ejercicio, proyecto, fix` — QUÉ ES: prefijo del mensaje / POR QUÉ: ordena tu historial
 
 ## Qué aprendí (1 frase)
