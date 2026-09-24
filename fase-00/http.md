@@ -56,3 +56,9 @@ GET https://api.tienda.com/api/productos/1 -> 200 + { "id":1, "nombre":"Laptop" 
 ## Cómo se verá en .NET Fase 2 (adelanto, no codificar aún)
 - Tu C# con `GET /api/productos/1` devolverá `200 + JSON` igual que arriba.
 - Por eso este molde: hoy lees, en Fase 2 creas.
+
+## Mi práctica 2026-09-24 (lo que hice, aquí queda, no en notas.md)
+- Abrí `https://jsonplaceholder.typicode.com/posts/1` — QUÉ ES: API prueba / POR QUÉ: practicar lectura sin código.
+- Método usado: `GET` — QUÉ ES: leer / POR QUÉ: escribir URL + Enter siempre es leer.
+- Status: `200 OK` — QUÉ ES: todo bien / POR QUÉ: vi datos, si fuera 404 no vería nada.
+- Title que me devolvió: `sunt aut facere repellat provident occaecati excepturi optio reprehenderit` — QUÉ ES: campo title del JSON / POR QUÉ: confirma que leí bien la API.

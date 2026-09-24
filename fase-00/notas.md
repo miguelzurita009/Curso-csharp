@@ -1,13 +1,12 @@
 # Fase 00 - Notas (molde)
 
-## Qué hice hoy
+## Qué hice hoy (solo Git, HTTP va en http.md)
 - 2026-09-24 - verifiqué entorno: Git 2.49 ok, .NET 6 y 9 ok, VS Code ok, Docker falta (se instala en Fase 3)
 - 2026-09-24 - comprobé firma Git: Miguel / miguelzurita009@gmail.com ya configurada
 - 2026-09-24 - creé molde base: README.md + .gitignore + notas.md
 - 2026-09-24 - renombré rama master -> main
 - 2026-09-24 - enlacé a GitHub: https://github.com/miguelzurita009/Curso-csharp.git
 - 2026-09-24 - practiqué segundo commit + push
-- 2026-09-24 - practiqué HTTP 0.3: leí https://jsonplaceholder.typicode.com/posts/1, método GET, status 200, title sunt aut facere...
 
 ## Mi entorno actual
 - `git 2.49` — QUÉ ES: guarda versiones / POR QUÉ: sin esto no hay historial
@@ -86,8 +85,8 @@ git status # Esperas: up to date + clean
 
 Tipos de commit: `init, nota, ejercicio, proyecto, fix` — QUÉ ES: prefijo del mensaje / POR QUÉ: ordena tu historial
 
-## Qué aprendí (1 frase)
-- Git guarda versiones local con commit y las sube a GitHub con push, y el navegador lee APIs con GET que devuelve 200 + JSON.
+## Qué aprendí (1 frase, solo Git)
+- Git guarda versiones local con commit y las sube a GitHub con push, el enlace se hace una vez con remote add origin.
 
 ## Duda para mañana
 - ¿Cómo pido datos con SQL SELECT WHERE JOIN?
