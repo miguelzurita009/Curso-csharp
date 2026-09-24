@@ -1,0 +1,14 @@
+# Molde .gitignore - copiar tal cual en cada proyecto .NET futuro
+[Bb]in/
+[Oo]bj/
+[Vv]s/
+.vscode/
+*.user
+*.suo
+[TestRr]esult*/
+[Bb]uild/
+[Dd]ebug/
+[Rr]elease/
+appsettings.Development.json
+*.db
+*.sqlite
