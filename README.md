@@ -35,3 +35,21 @@ git config --global user.email "tu@email.com" # QUÉ ES: guarda tu email / POR Q
 4. `git log --oneline -5` — QUÉ ES: muestra tus últimas 5 versiones / POR QUÉ: confirmas que se guardó bien.
 
 Tipos: `init`, `nota`, `ejercicio`, `proyecto`, `fix`
+
+## Molde 2: Enlazar a GitHub y subir (una vez por proyecto + uso diario)
+- `remoto` — QUÉ ES: copia de tus versiones en GitHub / POR QUÉ: copia de seguridad + portafolio para empleo.
+- `origin` — QUÉ ES: nombre corto de la URL de GitHub / POR QUÉ: para no escribir la URL larga cada vez.
+- `push` — QUÉ ES: subir versiones locales a GitHub / POR QUÉ: si no haces push, GitHub no se entera.
+
+1. Enlazar (una sola vez por proyecto):
+```
+git remote add origin https://github.com/miguelzurita009/Curso-csharp.git # QUÉ ES: guarda la dirección de GitHub con nombre origin / POR QUÉ: solo se enlaza una vez
+git remote -v # QUÉ ES: muestra a dónde está enlazado / POR QUÉ: confirmas que el enlace quedó bien
+```
+
+2. Subir (siempre después de commit):
+```
+git push -u origin main # QUÉ ES: sube tu rama main a GitHub y la deja vinculada / POR QUÉ: -u es solo la primera vez, después basta con git push
+git push                # QUÉ ES: sube cambios siguientes / POR QUÉ: ya quedó vinculado con -u
+git status              # QUÉ ES: debe decir clean y up to date / POR QUÉ: confirmas que local y GitHub están iguales
+```
