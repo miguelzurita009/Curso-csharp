@@ -31,12 +31,14 @@ GET https://api.tienda.com/api/productos/1 -> 200 + { "id":1, "nombre":"Laptop" 
 ## Métodos (qué quieres hacer) — QUÉ ES cada uno / POR QUÉ se usa
 - `GET` — QUÉ ES: leer / POR QUÉ: ver productos, sin cambiar nada. Ejemplo: ver ficha.
 - `POST` — QUÉ ES: crear nuevo / POR QUÉ: guardar algo que no existía. Ejemplo: registrar usuario.
-- `PUT` — QUÉ ES: actualizar completo / POR QUÉ: reemplazas todo. Ejemplo: editar producto entero.
-- `DELETE` — QUÉ ES: borrar / POR QUÉ: eliminas. Ejemplo: borrar tarea.
+- `PUT` — QUÉ ES: actualizar completo, mandas todo el objeto / POR QUÉ: reemplazas entero. Ejemplo: editar producto con nombre+precio+stock.
+- `PATCH` — QUÉ ES: actualizar 1 campo, mandas solo lo que cambia / POR QUÉ: en entrevistas te lo preguntan, PUT vs PATCH. Ejemplo: solo cambiar precio.
+- `DELETE` — QUÉ ES: borrar / POR QUÉ: eliminas. Bueno devuelve 204 sin JSON, no 200. Ejemplo: borrar tarea.
 
-## Status (qué respondió el servidor) — memoriza estos 6
+## Status (qué respondió el servidor) — memoriza estos 7
 - `200 OK` — QUÉ ES: todo bien al leer / POR QUÉ: tu GET salió bien.
 - `201 Created` — QUÉ ES: todo bien al crear / POR QUÉ: tu POST guardó.
+- `204 No Content` — QUÉ ES: borrado bien sin devolver nada / POR QUÉ: DELETE bueno no devuelve JSON.
 - `400 Bad Request` — QUÉ ES: mandaste datos mal / POR QUÉ: te faltó un campo o JSON roto.
 - `401 Unauthorized` — QUÉ ES: sin permiso / POR QUÉ: te falta login o token.
 - `404 Not Found` — QUÉ ES: no existe esa URL o id / POR QUÉ: pediste producto 999 que no hay.
@@ -72,6 +74,42 @@ GET https://api.tienda.com/api/productos/1 -> 200 + { "id":1, "nombre":"Laptop" 
 ## Cómo se verá en .NET Fase 2 (adelanto, no codificar aún)
 - Tu C# con `GET /api/productos/1` devolverá `200 + JSON` igual que arriba.
 - Por eso este molde: hoy lees, en Fase 2 creas.
+
+## Molde 0.3b: Lo que faltaba para junior (cerrar 0.3)
+
+1. Path vs Query — QUÉ ES dónde va el dato / POR QUÉ te trabas sin esto en Fase 2
+```
+GET /api/productos/1              # PATH — QUÉ ES: /1 es parte de la URL / POR QUÉ: pides UNO específico
+GET /api/productos?page=1&orden=precio # QUERY — QUÉ ES: ?page=1 son filtros después de ? / POR QUÉ: pides LISTA filtrada, página 1 ordenada
+GET /api/posts?userId=1           # Ejemplo real que practicarás abajo / POR QUÉ: trae solo posts del usuario 1
+# Regla: path = cuál, query = cómo los quiero. Body solo en POST/PUT/PATCH, nunca en GET.
+```
+
+2. Headers + Auth — QUÉ ES el sobre del pedido / POR QUÉ sin esto tu JWT dará 401
+```
+Content-Type: application/json  # QUÉ ES: dices mando JSON / POR QUÉ: el servidor sabe cómo leerte
+Accept: application/json        # QUÉ ES: dices devuélveme JSON / POR QUÉ: pides formato
+Authorization: Bearer TU_TOKEN  # QUÉ ES: tu pase de entrada / POR QUÉ: sin token el servidor responde 401 Unauthorized
+# En navegador no ves headers al escribir URL, en Swagger/Postman sí. Por eso navegador solo sirve para GET público.
+```
+
+3. Error estándar enterprise — QUÉ ES forma fija / POR QUÉ te exigen esto en empleo
+```json
+// Éxito: 200 + datos
+{ "id": 1, "nombre": "Laptop" }
+// Error: 400 + forma fija, no texto libre
+{ "error": "BadRequest", "message": "Falta el campo nombre" }
+```
+
+4. Cómo probar como junior (navegador no basta)
+- `Navegador` — QUÉ ES: solo hace GET / POR QUÉ: escribir URL = leer, no puedes probar POST.
+- `Swagger` — QUÉ ES: página que genera tu API .NET para probar / POR QUÉ: en Fase 2 lo usarás a diario, tiene botón Try it.
+- `Postman o REST Client VS Code` — QUÉ ES: app para mandar POST/PUT/DELETE / POR QUÉ: cuando trabajes con token Bearer.
+
+## Práctica 2 sin código - query (2 min)
+1. Abre: https://jsonplaceholder.typicode.com/posts?userId=1
+2. Verás lista solo con `"userId": 1` — QUÉ ES: filtraste por query / POR QUÉ: ?userId=1 pide solo de ese usuario.
+3. Dime: ¿cuántos posts ves y qué método/status fue?
 
 ## Mi práctica 2026-09-24 (lo que hice, aquí queda, no en notas.md)
 - Abrí `https://jsonplaceholder.typicode.com/posts/1` — QUÉ ES: API prueba / POR QUÉ: practicar lectura sin código.
