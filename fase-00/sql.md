@@ -99,6 +99,45 @@ DELETE FROM Productos WHERE id = 5;
 - `SELECT * solo para explorar` — POR QUÉ: en API pides columnas exactas, * trae de más y es lento.
 - `JOIN ON` — QUÉ ES: une donde ids coinciden / POR QUÉ: así conectas tablas sin duplicar datos.
 
+## Molde 0.4b: Lo que faltaba para junior (cerrar SQL)
+
+1. WHERE compuesto + NULL — QUÉ ES: combinar filtros / POR QUÉ: en API filtras por varias cosas, es lo más pedido en pruebas
+```sql
+-- AND = todo debe cumplirse / OR = basta uno / IN = lista / BETWEEN = rango / IS NULL = vacío
+SELECT * FROM Productos WHERE precio > 50 AND categoriaId = 1; -- QUÉ ES: caros de Electronica / POR QUÉ: AND junta filtros. Resultado: Laptop, Teclado
+SELECT * FROM Productos WHERE categoriaId = 1 OR categoriaId = 2; -- QUÉ ES: de ambas / POR QUÉ: OR alterna
+SELECT * FROM Productos WHERE id IN (1, 3, 4); -- QUÉ ES: solo esos ids / POR QUÉ: IN evita muchos OR
+SELECT * FROM Productos WHERE precio BETWEEN 50 AND 200; -- QUÉ ES: entre 50 y 200 / POR QUÉ: BETWEEN incluye bordes. Resultado: Silla, Teclado
+-- NULL: si mañana agregas columna descripcion sin valor, WHERE descripcion IS NULL encuentra vacíos. = NULL nunca funciona, siempre IS NULL.
+-- PASOS TÚ: 1) ¿Qué filtros? 2) Únelos con AND 3) Prueba uno por uno antes de juntar.
+```
+
+2. Paginación LIMIT/OFFSET — QUÉ ES: dar por páginas / POR QUÉ: tu API nunca devuelve 10.000, conecta con ?page de HTTP 0.3b
+```sql
+SELECT id, nombre FROM Productos ORDER BY id LIMIT 2 OFFSET 0; -- Página 1: 1,2
+SELECT id, nombre FROM Productos ORDER BY id LIMIT 2 OFFSET 2; -- Página 2: 3,4
+-- QUÉ ES: LIMIT cuántos, OFFSET cuántos salto / POR QUÉ: OFFSET = (page-1)*limit. Page2 limit2 = offset 2.
+-- Regla: siempre ORDER BY + LIMIT juntos, sin ORDER la página sale desordenada.
+```
+
+3. Lista real junta todo — QUÉ ES: molde que usarás en Fase 2 / POR QUÉ: en API WHERE+ORDER+LIMIT van juntos
+```sql
+SELECT Productos.nombre, Productos.precio, Categorias.nombre AS categoria
+FROM Productos
+JOIN Categorias ON Productos.categoriaId = Categorias.id
+WHERE Productos.precio > 20
+ORDER BY Productos.precio DESC
+LIMIT 10;
+-- PASOS: 1) JOIN para tener nombres 2) WHERE filtra 3) ORDER ordena 4) LIMIT pagina. Ese orden es fijo.
+```
+
+4. PK/FK + integridad — QUÉ ES: reglas que protegen / POR QUÉ: si borras Electrónica con 3 productos rompes todo
+```sql
+-- PK = único ej Productos.id / FK = apunta ej Productos.categoriaId -> Categorias.id
+-- Si intentas: DELETE FROM Categorias WHERE id = 1; — falla si hay productos, POR QUÉ: FK protege.
+-- En .NET Fase 2 EF Core creará estos FK por ti con relaciones. Hoy entiende: FK evita huérfanos.
+```
+
 ## Cómo se verá en .NET Fase 2 (adelanto)
 ```csharp
 // SQL que aprendiste:
