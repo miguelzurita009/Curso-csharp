@@ -63,6 +63,14 @@ SELECT categoriaId, COUNT(*) AS total FROM Productos GROUP BY categoriaId;
 -- Similar tú: cuenta por precio? No, precio no se repite. Agrupa solo por columnas que se repiten: categoriaId.
 -- Otro similar: SELECT categoriaId, AVG(precio) AS promedio FROM Productos GROUP BY categoriaId; — QUÉ ES: AVG promedia / POR QUÉ: mismo molde, cambia COUNT por AVG
 
+-- 6b. Contar pero mostrando nombre categoría (más útil) — QUÉ ES: JOIN + GROUP juntos / POR QUÉ: categoriaId 1 no dice nada, Electronica sí
+SELECT Categorias.nombre AS categoria, COUNT(*) AS total
+FROM Productos
+JOIN Categorias ON Productos.categoriaId = Categorias.id
+GROUP BY Categorias.nombre;
+-- PASOS: 1) Quiero ver nombre no id -> necesito Categorias -> 2) FROM Productos + JOIN Categorias ON FK=PK -> 3) SELECT nombre + COUNT -> 4) GROUP BY MISMA columna del SELECT (Categorias.nombre)
+-- Resultado: Electronica|3, Hogar|1 — QUÉ ES: útil para reporte / POR QUÉ: jefe entiende nombres no ids
+
 -- 7. Unir 2 tablas JOIN — QUÉ ES: pega filas donde FK = PK / POR QUÉ: lo más pedido en empleo, traer producto + nombre categoría sin duplicar datos
 SELECT Productos.nombre, Productos.precio, Categorias.nombre AS categoria
 FROM Productos
