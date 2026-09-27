@@ -17,4 +17,7 @@ dotnet new console -n hola-csharp # QUÉ ES: crea carpeta hola-csharp con Progra
 ```
 dotnet run --project fase-01/hola-csharp # QUÉ ES: compila y ejecuta / POR QUÉ: ves tu programa. --project dice cuál carpeta
 dotnet build fase-01/hola-csharp # QUÉ ES: solo compila sin ejecutar / POR QUÉ: verifica errores antes de correr
+dotnet new console -n linq-base # QUÉ ES: segunda consola para LINQ / POR QUÉ: separas 1.1 tipos de 1.2 listas, no mezclas
+dotnet run --project fase-01/linq-base # QUÉ ES: corre LINQ / POR QUÉ: ves Where Select OrderBy
+# Error CS8803 — QUÉ ES: pusiste record antes del código / POR QUÉ: en consola top-level el código va primero, tipos al final
 ```
