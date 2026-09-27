@@ -27,4 +27,6 @@ dotnet new console -n nullability-demo # QUÉ ES: proyecto F1-02 solo null / POR
 dotnet run --project fase-01/nullability-demo # QUÉ ES: corre nullability / POR QUÉ: ves ?? ?. is null Value sin reventar
 dotnet new console -n colecciones-demo # QUÉ ES: proyecto F1-03 solo colecciones sin LINQ / POR QUÉ: Add Remove Clear Dictionary separados
 dotnet run --project fase-01/colecciones-demo # QUÉ ES: corre colecciones / POR QUÉ: ves Count [0] Remove Dictionary
+dotnet new console -n async-demo # QUÉ ES: proyecto F1-05 solo async / POR QUÉ: Task await Delay File sin mezclar JSON
+dotnet run --project fase-01/async-demo # QUÉ ES: corre async / POR QUÉ: ves espera sin bloquear + archivo. OJO saludo.txt se crea donde corres, muévelo a async-demo
 ```
