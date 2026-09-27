@@ -21,4 +21,6 @@ dotnet new console -n linq-base # QUÉ ES: segunda consola para LINQ / POR QUÉ:
 dotnet run --project fase-01/linq-base # QUÉ ES: corre LINQ / POR QUÉ: ves Where Select OrderBy
 # Tu preferencia Main explícito — QUÉ ES: class Program + static void Main / POR QUÉ: ves puerta de entrada sin magia top-level, base más clara. Top-level era corto pero oculta inicio.
 # Error CS8803 — QUÉ ES: pasaba en top-level con record arriba / POR QUÉ: con Main ya no pasa, record va fuera limpio
+dotnet new console -n inventario-json # QUÉ ES: tercera consola POO+JSON / POR QUÉ: proyecto cierre 1.3, no mezclas con linq
+dotnet run --project fase-01/inventario-json # QUÉ ES: corre inventario / POR QUÉ: crea datos.json. OJO ruta: datos.json se crea donde corres el comando (fase-01), muévelo a inventario-json para orden
 ```
