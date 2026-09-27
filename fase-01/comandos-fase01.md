@@ -23,4 +23,6 @@ dotnet run --project fase-01/linq-base # QUÉ ES: corre LINQ / POR QUÉ: ves Whe
 # Error CS8803 — QUÉ ES: pasaba en top-level con record arriba / POR QUÉ: con Main ya no pasa, record va fuera limpio
 dotnet new console -n inventario-json # QUÉ ES: tercera consola POO+JSON / POR QUÉ: proyecto cierre 1.3, no mezclas con linq
 dotnet run --project fase-01/inventario-json # QUÉ ES: corre inventario / POR QUÉ: crea datos.json. OJO ruta: datos.json se crea donde corres el comando (fase-01), muévelo a inventario-json para orden
+dotnet new console -n nullability-demo # QUÉ ES: proyecto F1-02 solo null / POR QUÉ: un tema un proyecto, no mezclas. ? ?? ?. is null
+dotnet run --project fase-01/nullability-demo # QUÉ ES: corre nullability / POR QUÉ: ves ?? ?. is null Value sin reventar
 ```
