@@ -25,4 +25,6 @@ dotnet new console -n inventario-json # QUÉ ES: tercera consola POO+JSON / POR 
 dotnet run --project fase-01/inventario-json # QUÉ ES: corre inventario / POR QUÉ: crea datos.json. OJO ruta: datos.json se crea donde corres el comando (fase-01), muévelo a inventario-json para orden
 dotnet new console -n nullability-demo # QUÉ ES: proyecto F1-02 solo null / POR QUÉ: un tema un proyecto, no mezclas. ? ?? ?. is null
 dotnet run --project fase-01/nullability-demo # QUÉ ES: corre nullability / POR QUÉ: ves ?? ?. is null Value sin reventar
+dotnet new console -n colecciones-demo # QUÉ ES: proyecto F1-03 solo colecciones sin LINQ / POR QUÉ: Add Remove Clear Dictionary separados
+dotnet run --project fase-01/colecciones-demo # QUÉ ES: corre colecciones / POR QUÉ: ves Count [0] Remove Dictionary
 ```
