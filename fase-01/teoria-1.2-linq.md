@@ -28,3 +28,16 @@
 - `new List<Producto>` = creas lista vacía para llenar.
 - `new { p.Nombre, p.Precio }` = creas cajita anónima temporal sin nombre porque solo tiene 2 de 4 campos, no es Producto completo.
 - Sin `new` no hay qué devolver. En Fase 2 ese anónimo será `new ProductoDto` con nombre.
+
+## 6. Orden fijo LINQ (copiar tal cual)
+- Orden: `Where -> OrderBy -> Select -> ToList` — QUÉ ES: filtra, ordena, elige, ejecuta / POR QUÉ: igual que SQL FROM->WHERE->ORDER->SELECT.
+- `Where` primero = filtras 4 a 2, ordenas 2 no 4, más rápido.
+- `Select` al final = si eliges Nombre antes ya no puedes ordenar por Precio porque lo tiraste.
+- Si falla tras cambiar orden, 90% es Select antes de Order.
+
+## 7. Los que más se usan (finales ejecutan)
+- `Where` filtra filas, `OrderBy/OrderByDescending` ordena, `Select` elige columnas. Arman, no ejecutan (diferidos).
+- `Count()` cuántos, int. Con filtro `Count(p=>...)` cuenta filtrados. Tu Electronica dio 3.
+- `ToList()` ejecuta y congela en lista. En API lo usas antes de devolver.
+- `First()` primero o revienta si no hay. `FirstOrDefault()` primero o null, el de `BuscarPorId`, seguro.
+- Regla: Where/Order/Select arman, Count/ToList/First ejecutan.
