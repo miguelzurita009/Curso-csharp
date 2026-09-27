@@ -19,5 +19,6 @@ dotnet run --project fase-01/hola-csharp # QUÉ ES: compila y ejecuta / POR QUÉ
 dotnet build fase-01/hola-csharp # QUÉ ES: solo compila sin ejecutar / POR QUÉ: verifica errores antes de correr
 dotnet new console -n linq-base # QUÉ ES: segunda consola para LINQ / POR QUÉ: separas 1.1 tipos de 1.2 listas, no mezclas
 dotnet run --project fase-01/linq-base # QUÉ ES: corre LINQ / POR QUÉ: ves Where Select OrderBy
-# Error CS8803 — QUÉ ES: pusiste record antes del código / POR QUÉ: en consola top-level el código va primero, tipos al final
+# Tu preferencia Main explícito — QUÉ ES: class Program + static void Main / POR QUÉ: ves puerta de entrada sin magia top-level, base más clara. Top-level era corto pero oculta inicio.
+# Error CS8803 — QUÉ ES: pasaba en top-level con record arriba / POR QUÉ: con Main ya no pasa, record va fuera limpio
 ```
